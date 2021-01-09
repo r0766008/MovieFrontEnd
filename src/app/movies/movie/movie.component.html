@@ -1,0 +1,54 @@
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 mt-2">
+            <div>
+                <h4>Search</h4>
+            </div>
+            <div class="input-group">
+                <input type="text" (keyup)="onFilter($event.target.value)" class="form-control" placeholder="Search" [value]="inputValue">
+            </div>
+            <div>
+                <hr>
+                <div class="list-group list-group">
+                    <h4 class="">Genre</h4>
+                    <a *ngFor="let g of (genres | async) | slice:0:visibleGenres" href="#" [ngClass]="(g.name === isActive)?'list-group-item list-group-item-active': 'list-group-item'" (click)="filterGenre(g)">{{g.name}}</a>
+                    <div id="genres" class="collapse">
+                        <a *ngFor="let g of (genres | async) | slice:visibleGenres" href="#" [ngClass]="(g.name === isActive)?'list-group-item list-group-item-active': 'list-group-item'" (click)="filterGenre(g)">{{g.name}}</a>
+                    </div>
+                    <button *ngIf="(genres | async)?.length > visibleGenres" class="btn btn-default btn-sm btn-block" data-toggle="collapse" data-target="#genres">More <span class="caret"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="well hidden-xs">
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" (change)="onSort($event.target.value)">
+                            <option value="recent">Recently Added</option>
+                            <option value="a">A-Z</option>
+                            <option value="z">Z-A</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div *ngFor="let m of (moviesFilter | async)" class="row">
+                <div class="col-sm-4">
+                    <img [src]='createImgPath(m.imdbID)' class="img-thumbnail" (click)="navigateMovie(m)" style="cursor: pointer;">
+                </div>
+                <div class="col-sm-8">
+                    <h3 class="title" (click)="navigateMovie(m)" style="cursor: pointer;">{{m.title}} ({{m.year}})</h3>
+                    <p class="text-muted">{{m.category}}</p>
+                    <p>Duration: {{m.minutes}} minutes</p>
+                </div>
+                <hr>
+            </div>
+            <div *ngIf="(moviesFilter | async)?.length == 0">
+                <div class="no-results"><b>No results found</b></div>
+            </div>
+        </div>
+    </div>
+</div>

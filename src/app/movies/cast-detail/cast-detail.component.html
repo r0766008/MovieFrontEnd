@@ -1,0 +1,29 @@
+<br>
+<div *ngIf="selectedCast" class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-4">
+                <img [src]='createImgPath(selectedCast.iMDB)' class="img-thumbnail">
+            </div>
+            <div class="col-sm-8">
+                <h3 class="title">{{selectedCast.firstName}} {{selectedCast.lastName}} ({{selectedCast.age}})</h3>
+                <p class="text-muted">{{selectedCast.character}}</p>
+                <p>Birthplace: {{selectedCast.birthPlace}}</p>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <hr>
+    <div *ngFor="let m of movies" class="media">
+        <div class="col-sm-2">
+            <img [src]='createImgPath(m.imdbID)' (click)="navigateMovie(m)" class="img-thumbnail" style="max-height: 200px; cursor: pointer;">
+        </div>
+        <div class="media-body">
+            <h5 class="media-heading">
+                <small style="font-size: 13px;">({{m.category}})</small>
+            </h5>
+            <p (click)="navigateMovie(m)" style="cursor: pointer;">{{m.title}} ({{m.year}})</p>
+            <p>Duration {{m.minutes}} minutes</p>
+        </div>
+    </div>
+</div>
