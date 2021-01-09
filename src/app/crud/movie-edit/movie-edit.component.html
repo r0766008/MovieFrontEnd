@@ -1,0 +1,96 @@
+<br>
+<div class="container shadow-lg p-3 mb-5 bg-white rounded">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+            <div *ngIf="f.title.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" class="form-control" id="year" placeholder="Year" formControlName="year">
+            <div *ngIf="f.year.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.year.errors.required">Year is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" placeholder="Category" formControlName="category">
+            <div *ngIf="f.category.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.category.errors.required">Category is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="minutes">Total Minutes</label>
+            <input type="text" class="form-control" id="minutes" placeholder="Minutes" formControlName="minutes">
+            <div *ngIf="f.minutes.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.minutes.errors.required">Minutes is required</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+    </form>
+</div>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<body>
+  <div class="main-content">
+    <div class="container mt-7">
+        <br>
+        <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0 float-left">Cast</h3>
+                <button type="button" class="btn btn-success btn-arrow-right float-right" (click)="goToCreate()">New</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Character</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Birthplace</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of casts">
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="mb-0 text-sm text-truncate">{{c.firstName}} {{c.lastName}}</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                        {{c.character}}
+                    </td>
+                    <td>
+                        {{c.age}}
+                    </td>
+                    <td>
+                        {{c.birthPlace}}
+                    </td>
+                    <td class="text-right">
+                      <div class="dropdown" style="position:static;overflow: visible;">
+                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <mat-icon style="color: black;">more_vert</mat-icon>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item" (click)="editCast(c)" style="cursor: pointer;">Edit cast</a>
+                          <a class="dropdown-item" (click)="deleteCast(c)" style="cursor: pointer;">Delete cast</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

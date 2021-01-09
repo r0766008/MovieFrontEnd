@@ -1,0 +1,62 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<body>
+  <div class="main-content">
+    <div class="container mt-7">
+        <br>
+        <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0 float-left">Movies</h3>
+                <button type="button" class="btn btn-success btn-arrow-right float-right" (click)="goToCreate()">New</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Duration (minutes)</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let m of (movies | async)">
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="mb-0 text-sm text-truncate">{{m.title}}</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                        {{m.year}}
+                    </td>
+                    <td>
+                        {{m.category}}
+                    </td>
+                    <td>
+                        {{m.minutes}}
+                    </td>
+                    <td class="text-right">
+                      <div class="dropdown" style="position:static;overflow: visible;">
+                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <mat-icon style="color: black;">more_vert</mat-icon>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item" (click)="editMovie(m)" style="cursor: pointer;">Edit movie</a>
+                          <a class="dropdown-item" (click)="deleteMovie(m)" style="cursor: pointer;">Delete movie</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

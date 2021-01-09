@@ -1,0 +1,41 @@
+<br>
+<div class="container shadow-lg p-3 mb-5 bg-white rounded">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+            <div *ngIf="f.title.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" class="form-control" id="year" placeholder="Year" formControlName="year">
+            <div *ngIf="f.year.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.year.errors.required">Year is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" placeholder="Category" formControlName="category">
+            <div *ngIf="f.category.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.category.errors.required">Category is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="minutes">Total Minutes</label>
+            <input type="text" class="form-control" id="minutes" placeholder="Minutes" formControlName="minutes">
+            <div *ngIf="f.minutes.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.minutes.errors.required">Minutes is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="imdbID">IMDB</label>
+            <input type="text" class="form-control" id="imdbID" placeholder="IMDB" formControlName="imdbID">
+            <div *ngIf="f.imdbID.errors" class="is-invalid text-danger ml-1">
+                <div *ngIf="f.imdbID.errors.required">IMDB is required</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!createForm.valid">Submit</button>
+    </form>
+</div>
